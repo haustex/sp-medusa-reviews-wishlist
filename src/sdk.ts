@@ -10,7 +10,7 @@
  * Only `sdk.client.fetch` is used, so any object with that shape works (your own fetch wrapper included).
  */
 
-export type FetchClient = { client: { fetch: <T>(path: string, init?: { method?: string; body?: unknown; query?: Record<string, unknown>; headers?: Record<string, string> }) => Promise<T> } }
+export type FetchClient = { client: { fetch: <T>(path: string, init?: { method?: string; body?: Record<string, any> | null; query?: Record<string, any>; headers?: Record<string, string> }) => Promise<T> } }
 
 export type StoreReview = {
   id: string
