@@ -78,7 +78,7 @@ export function toAdminReview(r: ReviewRow, extra: { product_title?: string | nu
     ...rest,
     product_title: extra.product_title ?? null,
     order_display_id: extra.order_display_id ?? null,
-    images: (images ?? []).sort((a, b) => a.position - b.position).map((i) => ({ id: i.id, url: i.url, mime_type: i.mime_type, size: i.size ?? null, position: i.position, published: !!i.url })),
+    images: (images ?? []).sort((a, b) => a.position - b.position).map((i) => ({ id: i.id, url: i.url, mime_type: i.mime_type, size: i.size ?? null, position: i.position, published: !!i.url, available: !!(i.url || i.private_file_id) })),
     reply: reply ? { id: reply.id, body: reply.body, author_id: reply.author_id ?? null, author_name: reply.author_name ?? null, created_at: iso(reply.created_at), updated_at: iso(reply.updated_at) } : null,
   }
 }

@@ -1,1 +1,136 @@
-{}
+{
+  "reviews": {
+    "label": "Reviews",
+    "title": "Reviews",
+    "description": "Verified-purchase reviews, moderation, store replies and review-request e-mails.",
+    "tabs": { "reviews": "Reviews", "requests": "Review requests" },
+    "summary": { "all": "All", "pending": "Pending", "approved": "Approved", "rejected": "Rejected" },
+    "autoApproveOn": "Auto-approve is on",
+    "search": "Search text, title, name or e-mail",
+    "filters": {
+      "anyRating": "Any rating",
+      "stars_one": "{{count}} star",
+      "stars_other": "{{count}} stars",
+      "withOrWithoutPhotos": "With or without photos",
+      "withPhotos": "With photos",
+      "clearProduct": "Show all products",
+      "clearOrder": "Show all orders"
+    },
+    "sort": { "newest": "Newest first", "oldest": "Oldest first", "highest": "Highest rating", "lowest": "Lowest rating" },
+    "selected_one": "{{count}} selected",
+    "selected_other": "{{count}} selected",
+    "selectPage": "Select this page",
+    "replied": "Replied",
+    "verified": "Verified purchase",
+    "source": "Source: {{source}}",
+    "empty": "No reviews match.",
+    "loadError": "Could not load the reviews.",
+    "pagination": "{{from}}–{{to}} of {{count}}",
+    "prev": "Previous",
+    "next": "Next",
+    "status": { "pending": "Pending", "approved": "Approved", "rejected": "Rejected" },
+    "requestStatus": {
+      "scheduled": "Scheduled",
+      "sent": "Sent",
+      "used": "Used",
+      "expired": "Expired",
+      "skipped": "Skipped",
+      "failed": "Failed",
+      "opted_out": "Opted out"
+    },
+    "actions": {
+      "approve": "Approve",
+      "reject": "Reject",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "close": "Close",
+      "clearSelection": "Clear",
+      "saveReply": "Save reply",
+      "removeReply": "Remove reply"
+    },
+    "confirmDelete": {
+      "title": "Delete reviews?",
+      "body_one": "The review and its photos are removed for good. Rejecting keeps a record instead.",
+      "body_other": "{{count}} reviews and their photos are removed for good. Rejecting keeps a record instead."
+    },
+    "toast": {
+      "approved": "Review approved and published",
+      "rejected": "Review rejected",
+      "deleted": "Review deleted",
+      "approvedMany_one": "{{count}} review approved",
+      "approvedMany_other": "{{count}} reviews approved",
+      "rejectedMany_one": "{{count}} review rejected",
+      "rejectedMany_other": "{{count}} reviews rejected",
+      "deletedMany_one": "{{count}} review deleted",
+      "deletedMany_other": "{{count}} reviews deleted",
+      "replied": "Reply saved",
+      "replyRemoved": "Reply removed"
+    },
+    "drawer": {
+      "title": "Review",
+      "photos_one": "{{count}} photo",
+      "photos_other": "{{count}} photos",
+      "private": "Not public yet",
+      "deletedPhoto": "Photo deleted when the review was rejected",
+      "photosHint": "Photos of a pending review are private; they are published on approval and deleted on rejection.",
+      "rejectedWith": "Rejected: {{reason}}",
+      "moderatedAt": "Moderated {{date}}",
+      "moderation": "Moderation",
+      "rejectReason": "Reason for rejecting (internal, optional)",
+      "reply": "Store reply",
+      "replyHint": "Shown publicly under the review once it is approved."
+    },
+    "requests": {
+      "settings": "Trigger: {{trigger}} + {{days}} day(s). Links expire after {{ttl}} days.",
+      "rules_one": "{{count}} region / sales-channel rule.",
+      "rules_other": "{{count}} region / sales-channel rules.",
+      "trigger": { "shipped": "shipped", "delivered": "delivered", "completed": "completed" },
+      "disabled": "Review requests are disabled in the plugin options",
+      "noLinkUrl": "review_requests.link_url is not set: nothing can be sent",
+      "orderIdPlaceholder": "Order id (order_…) to request a review for",
+      "schedule": "Schedule",
+      "scheduleAndSend": "Schedule and send now",
+      "allStatuses": "All statuses",
+      "empty": "No review requests yet. They are created when an order reaches the trigger state.",
+      "scheduledAt": "scheduled {{date}}",
+      "sentAt": "sent {{date}}",
+      "expiresAt": "expires {{date}}",
+      "usedAt": "used {{date}}",
+      "openOrder": "Open order",
+      "sendNow": "Send now",
+      "resend": "Send a fresh link",
+      "sendResult": { "sent": "E-mail sent", "skipped": "Nothing sent: nothing left to review or the address opted out", "failed": "Sending failed, see the error on the request" },
+      "scheduleResult": {
+        "scheduled": "Review request scheduled",
+        "exists": "This order already has a review request",
+        "disabled": "Review requests are disabled",
+        "no_order": "Order not found",
+        "no_email": "The order has no e-mail address",
+        "not_eligible": "No item of this order has reached the trigger state yet",
+        "opted_out": "This address opted out of review e-mails"
+      }
+    },
+    "widget": {
+      "product": {
+        "title": "Reviews",
+        "pending_one": "{{count}} pending",
+        "pending_other": "{{count}} pending",
+        "count_one": "{{count}} approved review",
+        "count_other": "{{count}} approved reviews",
+        "none": "No approved reviews yet.",
+        "wishlisted_one": "On {{count}} wishlist",
+        "wishlisted_other": "On {{count}} wishlists",
+        "open": "Open reviews ({{count}})"
+      },
+      "order": {
+        "title": "Reviews",
+        "none": "No reviews for this order yet.",
+        "open": "Open in Reviews",
+        "request": "Review request e-mail",
+        "noRequest": "Not scheduled yet: it is created when the order reaches the trigger state.",
+        "sendRequest": "Send review request now"
+      }
+    },
+    "credit": { "text": "Reviews & Wishlist — by Haus Kayu", "help": "Help" }
+  }
+}

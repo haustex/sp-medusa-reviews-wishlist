@@ -2,8 +2,10 @@ import type { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/frame
 import { REVIEWS_MODULE } from "../../../../modules/reviews"
 import type ReviewsModuleService from "../../../../modules/reviews/service"
 import { toRating } from "../../../../lib/serialize"
+import { WISHLIST_MODULE } from "../../../../modules/wishlist"
+import type WishlistModuleService from "../../../../modules/wishlist/service"
 
-/** Counts per status (for the moderation page) and, with ?product_id, that product's aggregate. */
+/** Counts per status (for the moderation page) and, with ?product_id, that product's aggregate and wishlist count. */
 export const GET = async (req: AuthenticatedMedusaRequest, res: MedusaResponse) => {
   const service = req.scope.resolve<ReviewsModuleService>(REVIEWS_MODULE)
   const productId = typeof req.query.product_id === "string" ? req.query.product_id : null
@@ -15,6 +17,8 @@ export const GET = async (req: AuthenticatedMedusaRequest, res: MedusaResponse) 
   if (productId) {
     const [rating] = await service.listProductRatings({ product_id: productId }, { take: 1 })
     out.rating = toRating(rating, productId)
+    const [wc] = await req.scope.resolve<WishlistModuleService>(WISHLIST_MODULE).listProductWishlistCounts({ product_id: productId }, { take: 1 })
+    out.wishlist_count = wc?.count ?? 0
   }
   res.json(out)
 }

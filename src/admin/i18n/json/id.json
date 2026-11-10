@@ -1,1 +1,136 @@
-{}
+{
+  "reviews": {
+    "label": "Ulasan",
+    "title": "Ulasan",
+    "description": "Ulasan pembeli terverifikasi, moderasi, balasan toko, dan e-mail permintaan ulasan.",
+    "tabs": { "reviews": "Ulasan", "requests": "Permintaan ulasan" },
+    "summary": { "all": "Semua", "pending": "Menunggu", "approved": "Disetujui", "rejected": "Ditolak" },
+    "autoApproveOn": "Setujui otomatis aktif",
+    "search": "Cari teks, judul, nama, atau e-mail",
+    "filters": {
+      "anyRating": "Semua bintang",
+      "stars_one": "{{count}} bintang",
+      "stars_other": "{{count}} bintang",
+      "withOrWithoutPhotos": "Dengan/tanpa foto",
+      "withPhotos": "Ada foto",
+      "clearProduct": "Tampilkan semua produk",
+      "clearOrder": "Tampilkan semua pesanan"
+    },
+    "sort": { "newest": "Terbaru", "oldest": "Terlama", "highest": "Bintang tertinggi", "lowest": "Bintang terendah" },
+    "selected_one": "{{count}} dipilih",
+    "selected_other": "{{count}} dipilih",
+    "selectPage": "Pilih halaman ini",
+    "replied": "Dibalas",
+    "verified": "Pembelian terverifikasi",
+    "source": "Sumber: {{source}}",
+    "empty": "Tidak ada ulasan yang cocok.",
+    "loadError": "Ulasan tidak bisa dimuat.",
+    "pagination": "{{from}}–{{to}} dari {{count}}",
+    "prev": "Sebelumnya",
+    "next": "Berikutnya",
+    "status": { "pending": "Menunggu", "approved": "Disetujui", "rejected": "Ditolak" },
+    "requestStatus": {
+      "scheduled": "Terjadwal",
+      "sent": "Terkirim",
+      "used": "Terpakai",
+      "expired": "Kedaluwarsa",
+      "skipped": "Dilewati",
+      "failed": "Gagal",
+      "opted_out": "Berhenti langganan"
+    },
+    "actions": {
+      "approve": "Setujui",
+      "reject": "Tolak",
+      "delete": "Hapus",
+      "cancel": "Batal",
+      "close": "Tutup",
+      "clearSelection": "Bersihkan",
+      "saveReply": "Simpan balasan",
+      "removeReply": "Hapus balasan"
+    },
+    "confirmDelete": {
+      "title": "Hapus ulasan?",
+      "body_one": "Ulasan dan fotonya dihapus permanen. Kalau mau tetap ada catatan, pilih Tolak.",
+      "body_other": "{{count}} ulasan dan fotonya dihapus permanen. Kalau mau tetap ada catatan, pilih Tolak."
+    },
+    "toast": {
+      "approved": "Ulasan disetujui dan tayang",
+      "rejected": "Ulasan ditolak",
+      "deleted": "Ulasan dihapus",
+      "approvedMany_one": "{{count}} ulasan disetujui",
+      "approvedMany_other": "{{count}} ulasan disetujui",
+      "rejectedMany_one": "{{count}} ulasan ditolak",
+      "rejectedMany_other": "{{count}} ulasan ditolak",
+      "deletedMany_one": "{{count}} ulasan dihapus",
+      "deletedMany_other": "{{count}} ulasan dihapus",
+      "replied": "Balasan disimpan",
+      "replyRemoved": "Balasan dihapus"
+    },
+    "drawer": {
+      "title": "Ulasan",
+      "photos_one": "{{count}} foto",
+      "photos_other": "{{count}} foto",
+      "private": "Belum publik",
+      "deletedPhoto": "Foto dihapus saat ulasan ditolak",
+      "photosHint": "Foto ulasan yang menunggu bersifat privat; dipublikasikan saat disetujui dan dihapus saat ditolak.",
+      "rejectedWith": "Ditolak: {{reason}}",
+      "moderatedAt": "Dimoderasi {{date}}",
+      "moderation": "Moderasi",
+      "rejectReason": "Alasan penolakan (internal, opsional)",
+      "reply": "Balasan toko",
+      "replyHint": "Tampil publik di bawah ulasan setelah ulasan disetujui."
+    },
+    "requests": {
+      "settings": "Pemicu: {{trigger}} + {{days}} hari. Tautan kedaluwarsa setelah {{ttl}} hari.",
+      "rules_one": "{{count}} aturan region / sales channel.",
+      "rules_other": "{{count}} aturan region / sales channel.",
+      "trigger": { "shipped": "dikirim", "delivered": "diterima", "completed": "selesai" },
+      "disabled": "Permintaan ulasan dinonaktifkan di opsi plugin",
+      "noLinkUrl": "review_requests.link_url belum diisi: tidak ada yang bisa dikirim",
+      "orderIdPlaceholder": "ID pesanan (order_…) yang mau diminta ulasannya",
+      "schedule": "Jadwalkan",
+      "scheduleAndSend": "Jadwalkan dan kirim sekarang",
+      "allStatuses": "Semua status",
+      "empty": "Belum ada permintaan ulasan. Dibuat otomatis saat pesanan mencapai status pemicu.",
+      "scheduledAt": "dijadwalkan {{date}}",
+      "sentAt": "dikirim {{date}}",
+      "expiresAt": "kedaluwarsa {{date}}",
+      "usedAt": "dipakai {{date}}",
+      "openOrder": "Buka pesanan",
+      "sendNow": "Kirim sekarang",
+      "resend": "Kirim tautan baru",
+      "sendResult": { "sent": "E-mail terkirim", "skipped": "Tidak dikirim: tidak ada yang bisa diulas atau alamat sudah berhenti langganan", "failed": "Pengiriman gagal, lihat error di permintaan" },
+      "scheduleResult": {
+        "scheduled": "Permintaan ulasan dijadwalkan",
+        "exists": "Pesanan ini sudah punya permintaan ulasan",
+        "disabled": "Permintaan ulasan dinonaktifkan",
+        "no_order": "Pesanan tidak ditemukan",
+        "no_email": "Pesanan tidak punya alamat e-mail",
+        "not_eligible": "Belum ada item pesanan yang mencapai status pemicu",
+        "opted_out": "Alamat ini sudah berhenti langganan e-mail ulasan"
+      }
+    },
+    "widget": {
+      "product": {
+        "title": "Ulasan",
+        "pending_one": "{{count}} menunggu",
+        "pending_other": "{{count}} menunggu",
+        "count_one": "{{count}} ulasan disetujui",
+        "count_other": "{{count}} ulasan disetujui",
+        "none": "Belum ada ulasan yang disetujui.",
+        "wishlisted_one": "Di {{count}} wishlist",
+        "wishlisted_other": "Di {{count}} wishlist",
+        "open": "Buka ulasan ({{count}})"
+      },
+      "order": {
+        "title": "Ulasan",
+        "none": "Belum ada ulasan untuk pesanan ini.",
+        "open": "Buka di Ulasan",
+        "request": "E-mail permintaan ulasan",
+        "noRequest": "Belum dijadwalkan: dibuat saat pesanan mencapai status pemicu.",
+        "sendRequest": "Kirim permintaan ulasan sekarang"
+      }
+    },
+    "credit": { "text": "Reviews & Wishlist — oleh Haus Kayu", "help": "Bantuan" }
+  }
+}

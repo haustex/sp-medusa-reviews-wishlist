@@ -308,6 +308,13 @@ async function checks() {
   r = await api("GET", "/admin/reviews?status=pending")
   check("admin list: 1 pending with product title and order number", r.json.count === 1 && r.json.reviews[0].product_title === "Teak chopping board" && r.json.reviews[0].order_display_id === order1.display_id && r.json.reviews[0].images?.length === 1 && r.json.reviews[0].images[0].published === false, r.json)
   const privateBefore = fs.existsSync(path.join(APP_DIR, "private")) ? fs.readdirSync(path.join(APP_DIR, "private")).length : 0
+  const pendingImageId = r.json.reviews?.[0]?.images?.[0]?.id
+  const priv = await fetch(`${BASE}/admin/reviews/${review1.id}/images/${pendingImageId}`, { headers: { authorization: ctx.admin.authorization } })
+  check("admin can view the pending (private) photo for moderation", priv.status === 200 && (priv.headers.get("content-type") ?? "").includes("image/png") && priv.headers.get("cache-control") === "private, no-store", priv.status)
+  const privAnon = await fetch(`${BASE}/admin/reviews/${review1.id}/images/${pendingImageId}`)
+  check("pending photo needs an admin session", privAnon.status === 401, privAnon.status)
+  r = await api("GET", "/admin/reviews/config")
+  check("admin config reflects the plugin options", r.status === 200 && r.json.show_credit === true && r.json.auto_approve === false && r.json.review_requests?.trigger === "shipped" && r.json.review_requests.link_url_configured === true, r.json)
   r = await api("GET", "/admin/reviews/stats")
   check("admin stats", r.json.pending === 1 && r.json.total === 1, r.json)
 
@@ -320,6 +327,8 @@ async function checks() {
   const img = await fetch(imageUrl)
   check("photo is served publicly after approval", img.status === 200 && (img.headers.get("content-type") ?? "").includes("image/png"), img.status)
   const privateAfter = fs.existsSync(path.join(APP_DIR, "private")) ? fs.readdirSync(path.join(APP_DIR, "private")).length : 0
+  const pub = await fetch(`${BASE}/admin/reviews/${review1.id}/images/${pendingImageId}`, { headers: { authorization: ctx.admin.authorization }, redirect: "manual" })
+  check("published photo redirects to its public URL", pub.status === 302 && pub.headers.get("location") === imageUrl, { status: pub.status, location: pub.headers.get("location") })
   check("private copy deleted after publishing", privateAfter <= privateBefore, { privateBefore, privateAfter })
   r = await api("GET", `/store/reviews/ratings?product_id=${productId}`, { store: true })
   check("rating aggregate updated by the event", r.json.ratings?.[0]?.count === 1 && r.json.ratings[0].average === 5 && r.json.ratings[0].distribution?.[5] === 1, r.json)
@@ -404,7 +413,7 @@ async function checks() {
 
   section("Reject deletes the photo")
   r = await api("POST", `/admin/reviews/${review2.id}`, { body: { status: "rejected", reject_reason: "test" } })
-  check("reject", r.status === 200 && r.json.review.status === "rejected" && r.json.review.images[0].url === null && r.json.review.reject_reason === "test", r.json)
+  check("reject", r.status === 200 && r.json.review.status === "rejected" && r.json.review.images[0].url === null && r.json.review.images[0].available === false && r.json.review.reject_reason === "test", r.json)
   r = await api("GET", `/store/reviews?product_id=${productId}`, { store: true })
   check("rejected review not listed", r.json.count === 1, r.json)
   r = await api("GET", `/store/reviews/ratings?product_id=${productId}`, { store: true })
@@ -550,6 +559,9 @@ async function main() {
     serverDir = path.join(APP_DIR, ".medusa/server")
     fs.rmSync(path.join(serverDir, "node_modules"), { recursive: true, force: true })
     fs.symlinkSync(path.join(APP_DIR, "node_modules"), path.join(serverDir, "node_modules"))
+    // `medusa start` serves <cwd>/static; the file provider writes to <app>/static, so point the built server at it
+    fs.mkdirSync(path.join(APP_DIR, "static"), { recursive: true })
+    if (!fs.existsSync(path.join(serverDir, "static"))) fs.symlinkSync(path.join(APP_DIR, "static"), path.join(serverDir, "static"))
   }
   const log = fs.openSync(path.join(STATE_DIR, "server.log"), "w")
   const server = spawn("node", [GUARD, MEDUSA, "start"], { cwd: serverDir, env, stdio: ["ignore", log, log], detached: true })
