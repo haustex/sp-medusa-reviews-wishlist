@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 import { CONFIG_KEY, getConfig } from "../lib/api"
 import { CREDIT_URL, SUPPORT_URL } from "../lib/branding"
 
-/** Small plugin credit under the plugin's own pages; off with the plugin option `showCredit: false`. */
+/** Small plugin credit under the plugin's own pages; shown only with the plugin option `showCredit: true`. */
 export const CreditFooter = () => {
   const { t } = useTranslation()
   const { data } = useQuery({ queryKey: CONFIG_KEY, queryFn: getConfig, staleTime: Infinity })

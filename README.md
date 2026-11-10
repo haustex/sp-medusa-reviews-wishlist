@@ -165,7 +165,7 @@ All optional. Defaults in brackets.
 | `wishlist.guest` [`true`], `wishlist.share` [`true`], `wishlist.counts` [`false`], `wishlist.max_items` [`200`] | Wishlist features. |
 | `privacy.on_customer_deleted` [`"anonymize"`] | `anonymize` keeps the reviews under "Customer"; `delete` removes them. |
 | `privacy.ip_salt`, `secret` | Salt for the IP hash and key for unsubscribe links. Default: the project's `JWT_SECRET`. |
-| `showCredit` [`true`] | The small "by Haus Kayu" line under the plugin's Admin pages. |
+| `showCredit` [`false`] | Show a small "by Haus Kayu" line under the plugin's Admin pages. Off by default. |
 
 ### Storefront (Next.js)
 

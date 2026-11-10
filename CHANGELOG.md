@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.1.1
+
+- `showCredit` now defaults to `false`: the "by Haus Kayu" line under the Admin pages is shown only when the
+  option is set to `true`.
+- Build emits type declarations: `medusa-reviews-wishlist/sdk`, `/jsonld` and `/workflows` are typed for consumers.
+
 ## 0.1.0
 
 First release.

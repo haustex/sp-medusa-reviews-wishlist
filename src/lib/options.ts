@@ -73,7 +73,7 @@ export type PluginOptions = {
   }
   /** Secret for unsubscribe links (default: the project's JWT secret). */
   secret?: string
-  /** Show the small "by Haus Kayu" credit under the plugin's Admin pages. Default true. */
+  /** Show the small "by Haus Kayu" credit under the plugin's Admin pages. Default false. */
   showCredit?: boolean
 }
 
@@ -144,7 +144,7 @@ export function resolveOptions(raw: PluginOptions | undefined, fallbackSecret: s
     },
     privacy: { on_customer_deleted: p.on_customer_deleted === "delete" ? "delete" : "anonymize", ip_salt: p.ip_salt || secret },
     secret,
-    showCredit: o.showCredit !== false,
+    showCredit: o.showCredit === true,
   }
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "medusa-reviews-wishlist",
-  "version": "0.1.0",
-  "description": "Verified product reviews with ratings, photos, moderation, review-request e-mails and wishlists (customer + guest) for Medusa v2 \u2014 by Haus Kayu",
+  "version": "0.1.1",
+  "description": "Verified product reviews with ratings, photos, moderation, review-request e-mails and wishlists (customer + guest) for Medusa v2 — by Haus Kayu",
   "author": "Haus Kayu <dev@hauskayu.com> (https://hauskayu.com)",
   "license": "MIT",
   "homepage": "https://github.com/haustex/sp-medusa-reviews-wishlist#readme",
