@@ -30,11 +30,19 @@ export async function optOut(container: MedusaContainer, email: string, source: 
 
 /** Items of the order that may still be reviewed (eligible and not reviewed yet). */
 export async function openItems(container: MedusaContainer, order: OrderForReview): Promise<ReviewableItem[]> {
-  const eligible = order.items.filter((i) => i.eligible)
-  if (!eligible.length) return []
+  if (!order.items.some((i) => i.eligible)) return []
+  return (await unreviewedItems(container, order)).filter((i) => i.eligible)
+}
+
+/**
+ * Items of the order without a review yet, eligible or not. A magic link stays valid while this is non-empty, so a
+ * partially shipped order can be reviewed item by item from the same e-mail.
+ */
+export async function unreviewedItems(container: MedusaContainer, order: OrderForReview): Promise<ReviewableItem[]> {
+  if (!order.items.length) return []
   const reviewed = await service(container).listReviews({ order_id: order.id }, { select: ["order_item_id"], take: null })
   const done = new Set(reviewed.map((r) => r.order_item_id))
-  return eligible.filter((i) => !done.has(i.order_item_id))
+  return order.items.filter((i) => !done.has(i.order_item_id))
 }
 
 export type ScheduleResult = { status: "scheduled" | "exists" | "disabled" | "no_order" | "no_email" | "not_eligible" | "opted_out"; request_id?: string }
@@ -168,7 +176,11 @@ export async function sendDueReviewRequests(container: MedusaContainer, limit = 
 
 export type TokenContext = { request: Awaited<ReturnType<ReviewsModuleService["listReviewRequests"]>>[number]; order: OrderForReview; open: ReviewableItem[] }
 
-/** The order behind a magic link, or a 404-style error when the link is unknown, used or expired. */
+/**
+ * The order behind a magic link, or a 404-style error when the link is unknown, used or expired. Resolving never
+ * consumes the link: it can be opened, refreshed and reopened on another device until every item of the order has a
+ * review (see `consumeRequestTokenIfDone`) or it expires.
+ */
 export async function resolveRequestToken(container: MedusaContainer, token: string): Promise<TokenContext> {
   const [request] = await service(container).listReviewRequests({ token_hash: hashToken(token) }, { take: 1 })
   const invalid = () => new MedusaError(MedusaError.Types.NOT_FOUND, "This review link is invalid, used or expired")
@@ -180,7 +192,10 @@ export async function resolveRequestToken(container: MedusaContainer, token: str
   return { request, order, open }
 }
 
-/** The magic link is single-use: after the reviews are stored it stops working. */
-export async function consumeRequestToken(container: MedusaContainer, requestId: string): Promise<void> {
+/** Marks the link used (token hash dropped) once no item of the order is left to review. Returns whether it did. */
+export async function consumeRequestTokenIfDone(container: MedusaContainer, requestId: string, order: OrderForReview): Promise<boolean> {
+  const left = await unreviewedItems(container, order)
+  if (left.length) return false
   await service(container).updateReviewRequests({ id: requestId, status: "used", used_at: new Date(), token_hash: null })
+  return true
 }

@@ -7,7 +7,7 @@ import { toStoreReview } from "../../../lib/serialize"
 import { checkHoneypot, clientIpHash, limit, noStore } from "../../../lib/http"
 import { displayName, pickLocale, sanitizeText, splitName } from "../../../lib/text"
 import { loadOrderForReview, ruleFor, type OrderForReview } from "../../../lib/eligibility"
-import { consumeRequestToken, openItems, resolveRequestToken } from "../../../lib/review-requests"
+import { consumeRequestTokenIfDone, openItems, resolveRequestToken } from "../../../lib/review-requests"
 import { createReviewsWorkflow } from "../../../workflows/create-reviews"
 import type { StoreCreateReviewsType, StoreListReviewsType } from "../../validators"
 
@@ -99,10 +99,8 @@ export const POST = async (req: AuthenticatedMedusaRequest<Body>, res: MedusaRes
   })
 
   const { result: ids } = await createReviewsWorkflow(req.scope).run({ input: { reviews, auto_approve: options.auto_approve } })
-  if (requestId && open.size === seen.size) await consumeRequestToken(req.scope, requestId)
-  else if (requestId) {
-    // the link stays valid for the items not reviewed yet (single use once everything is reviewed)
-  }
+  // the link is consumed per item: it keeps working until every item of the order has a review (or it expires)
+  if (requestId) await consumeRequestTokenIfDone(req.scope, requestId, order)
   const created = await service.listReviews({ id: ids }, { relations: ["images", "reply"] })
   res.status(201).json({ reviews: created.map((r) => ({ ...toStoreReview(r), status: r.status, order_item_id: r.order_item_id })) })
 }
