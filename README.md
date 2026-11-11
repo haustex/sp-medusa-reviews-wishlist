@@ -138,6 +138,12 @@ Full steps: [Installation](#installation) · [Options](#plugin-options) · [Stor
    `review_request`, `review_opt_out`, `product_rating`, `wishlist`, `wishlist_item`, `product_wishlist_count`).
 4. Restart. The jobs (`send-review-requests` every 15 min, `cleanup-review-uploads` daily) run on the worker.
 
+> **Note for pnpm without hoisting or a locally linked copy:** the Admin build picks up this plugin's Tailwind classes
+> through `require.resolve("medusa-reviews-wishlist/admin")` from `@medusajs/admin-bundler`; if the bundler cannot resolve the package
+> (pnpm with `hoist=false`, or a plugin symlinked from outside the project), the plugin's Admin pages lose their layout.
+> npm, Yarn and pnpm's defaults are fine; otherwise install from npm (or `npm pack`) next to the bundler, or add
+> `hoist-pattern[]=medusa-reviews-wishlist` to `.npmrc`.
+
 ### Plugin options
 
 All optional. Defaults in brackets.
@@ -498,6 +504,12 @@ channel `email` dan buat template bernama `review-request` (field yang dikirim a
 [Review-request e-mail](#review-request-e-mail)). Tabel opsi lengkap: [Plugin options](#plugin-options). Contoh
 storefront Next.js (bintang di kartu produk, ringkasan + daftar ulasan, tombol wishlist, halaman magic link):
 [Storefront (Next.js)](#storefront-nextjs).
+
+> **Catatan untuk pnpm tanpa hoisting atau plugin yang di-symlink lokal:** build Admin mengambil class Tailwind plugin
+> ini lewat `require.resolve("medusa-reviews-wishlist/admin")` dari `@medusajs/admin-bundler`; kalau bundler tidak bisa me-resolve paketnya
+> (pnpm dengan `hoist=false`, atau plugin di-symlink dari luar proyek), halaman Admin plugin kehilangan layout-nya. npm,
+> Yarn, dan pnpm bawaan aman; selain itu pasang dari npm (atau `npm pack`) di sebelah bundler, atau tambahkan
+> `hoist-pattern[]=medusa-reviews-wishlist` di `.npmrc`.
 
 ### Alur ulasan
 
