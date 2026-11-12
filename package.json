@@ -1,6 +1,6 @@
 {
   "name": "medusa-reviews-wishlist",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Verified product reviews with ratings, photos, moderation, review-request e-mails and wishlists (customer + guest) for Medusa v2 — by Haus Kayu",
   "author": "Haus Kayu <dev@hauskayu.com> (https://hauskayu.com)",
   "license": "MIT",
@@ -87,6 +87,7 @@
     "@swc/jest": "^0.2.39",
     "@tanstack/react-query": "5.64.2",
     "@types/jest": "^29.5.14",
+    "@types/multer": "^2.0.0",
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.2.25",
@@ -101,8 +102,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2",
     "vite": "^7.3.6",
-    "yalc": "^1.0.0-pre.53",
-    "@types/multer": "^2.0.0"
+    "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
     "@medusajs/admin-sdk": "^2.19.0",
@@ -111,7 +111,6 @@
     "@medusajs/icons": "^2.19.0",
     "@medusajs/js-sdk": "^2.19.0",
     "@medusajs/medusa": "^2.19.0",
-    "@medusajs/test-utils": "^2.19.0",
     "@medusajs/ui": "^4.2.1"
   },
   "engines": {

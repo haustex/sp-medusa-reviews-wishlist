@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.1.2
+
+- `@medusajs/test-utils` is no longer listed as a peer dependency: it is only used by the plugin's own tests
+  (it stays a devDependency), so installing the plugin no longer asks for it or warns about it.
+
 ## 0.1.1
 
 - `showCredit` now defaults to `false`: the "by Haus Kayu" line under the Admin pages is shown only when the
