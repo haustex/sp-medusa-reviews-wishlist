@@ -553,6 +553,21 @@ on the product pages, the "saved" hearts and the review e-mails there come from 
 - Issues and feature requests: [GitHub issues](https://github.com/haustex/sp-medusa-reviews-wishlist/issues)
 - E-mail: [dev@hauskayu.com](mailto:dev@hauskayu.com)
 
+## Sponsors
+
+This plugin is free and MIT licensed, maintained by a small furniture workshop in Jepara, Indonesia. If it saves you
+time, [sponsor Haus Kayu on GitHub](https://github.com/sponsors/haustex).
+<br>Plugin ini gratis (MIT) dan dirawat oleh workshop furnitur kecil di Jepara. Kalau plugin ini menghemat waktumu,
+[dukung Haus Kayu lewat GitHub Sponsors](https://github.com/sponsors/haustex).
+
+### Business sponsors
+
+_Your logo here. [Become a Business sponsor](https://github.com/sponsors/haustex) ($50/month)._
+
+### Backers
+
+_Your name here. [Become a Backer](https://github.com/sponsors/haustex) ($10/month)._
+
 ## License
 
 [MIT](LICENSE) © Haus Kayu
